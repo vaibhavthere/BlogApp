@@ -46,7 +46,7 @@ public class PostDaoImpl implements PostDaoInterface
         if(byId.isPresent()){
             return byId.get();
         }else {
-            throw new ResourseNotFoundException("Record Not found", "getPostById", "Post");
+            throw new ResourseNotFoundException("Record Not found", "id", id);
         }
 
 

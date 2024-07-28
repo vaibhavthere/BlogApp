@@ -8,10 +8,10 @@ public class ResourseNotFoundException extends RuntimeException
 {
     private String resourseName;
     private String fieldName;
-    private String fieldValue;
+    private long fieldValue;
 
 
-    public ResourseNotFoundException(String resourseName, String fieldName, String fieldValue) {
+    public ResourseNotFoundException(String resourseName, String fieldName, long fieldValue) {
         super(String.format("%s not found with %s : %s", resourseName, fieldName, fieldValue)); // PostEntity not found with id
         this.resourseName = resourseName;
         this.fieldName = fieldName;
@@ -26,7 +26,7 @@ public class ResourseNotFoundException extends RuntimeException
         return fieldName;
     }
 
-    public String getFieldValue() {
+    public long getFieldValue() {
         return fieldValue;
     }
 }
