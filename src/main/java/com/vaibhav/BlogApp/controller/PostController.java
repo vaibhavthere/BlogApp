@@ -31,9 +31,15 @@ public class PostController
         return postService.getAllPosts();
     }
 
-    @PostMapping("/getPostById")
+    @PostMapping(path = "/getPostById")
     public ResponseEntity<PostModel> getPostById(@RequestBody PostByIdRequest postByIdRequest)
     {
         return new ResponseEntity<>(postService.getPostById(postByIdRequest), HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/updatePostById")
+    public ResponseEntity<PostModel> updatePostById(@RequestBody PostModel postModel)
+    {
+        return new ResponseEntity<>(postService.updatePostById(postModel), HttpStatus.OK);
     }
 }

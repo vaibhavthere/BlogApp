@@ -13,4 +13,5 @@ public interface PostDaoInterface
 
     PostEntity getPostById(Long id);
 
+   PostEntity updatePostById(PostEntity postEntity);
 }

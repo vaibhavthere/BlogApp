@@ -5,7 +5,6 @@ import com.vaibhav.BlogApp.dto.request.PostByIdRequest;
 import com.vaibhav.BlogApp.dto.request.PostModel;
 import com.vaibhav.BlogApp.entity.PostEntity;
 import com.vaibhav.BlogApp.service.interfaces.PostService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +54,21 @@ public class PostServiceImpl implements PostService
         PostModel postResponse = postEntityToModel(postById);
 
         return postResponse;
+    }
+
+    @Override
+    public PostModel updatePostById(PostModel postModelRequest)
+    {
+        PostEntity postById = postDaoInterface.getPostById(postModelRequest.getId());
+
+        postById.setContent(postModelRequest.getContent());
+        postById.setTitle(postModelRequest.getTitle());
+        postById.setDescription(postModelRequest.getDescription());
+
+        PostEntity postEntity = postDaoInterface.updatePostById(postById);
+
+        PostModel postModel = postEntityToModel(postEntity);
+
+        return postModel;
     }
 }

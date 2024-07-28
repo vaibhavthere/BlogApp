@@ -10,4 +10,5 @@ public interface PostService
      PostModel createPost(PostModel postDto);
      List<PostModel> getAllPosts();
      PostModel getPostById(PostByIdRequest postByIdRequest);
+     PostModel updatePostById(PostModel postModel);
 }

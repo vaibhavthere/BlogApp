@@ -1,7 +1,6 @@
 package com.vaibhav.BlogApp.Persistence.impl;
 
 import com.vaibhav.BlogApp.Persistence.interfaces.PostDaoInterface;
-import com.vaibhav.BlogApp.dto.request.PostModel;
 import com.vaibhav.BlogApp.entity.PostEntity;
 import com.vaibhav.BlogApp.exception.ResourseNotFoundException;
 import com.vaibhav.BlogApp.repository.PostRepository;
@@ -39,8 +38,8 @@ public class PostDaoImpl implements PostDaoInterface
     }
 
     @Override
-    public PostEntity getPostById(Long id) {
-
+    public PostEntity getPostById(Long id)
+    {
         Optional<PostEntity> byId = postRepository.findById(id);
 
         if(byId.isPresent()){
@@ -49,8 +48,12 @@ public class PostDaoImpl implements PostDaoInterface
             throw new ResourseNotFoundException("Record Not found", "id", id);
         }
 
-
     }
 
-
+    @Override
+    public PostEntity updatePostById(PostEntity postEntityRequest)
+    {
+        PostEntity postEntity = postRepository.save(postEntityRequest);
+        return postEntity;
+    }
 }
