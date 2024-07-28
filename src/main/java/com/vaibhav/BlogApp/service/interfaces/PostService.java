@@ -11,4 +11,5 @@ public interface PostService
      List<PostModel> getAllPosts();
      PostModel getPostById(PostByIdRequest postByIdRequest);
      PostModel updatePostById(PostModel postModel);
+     void deletePost(PostByIdRequest postByIdRequest);
 }

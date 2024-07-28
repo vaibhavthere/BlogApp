@@ -56,4 +56,10 @@ public class PostDaoImpl implements PostDaoInterface
         PostEntity postEntity = postRepository.save(postEntityRequest);
         return postEntity;
     }
+
+    @Override
+    public void deletePostById(Long id)
+    {
+        postRepository.deleteById(id);
+    }
 }

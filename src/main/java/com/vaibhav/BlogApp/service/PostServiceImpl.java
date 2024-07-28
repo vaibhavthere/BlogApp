@@ -71,4 +71,10 @@ public class PostServiceImpl implements PostService
 
         return postModel;
     }
+
+    @Override
+    public void deletePost(PostByIdRequest postByIdRequest)
+    {
+        postDaoInterface.deletePostById(postByIdRequest.getId());
+    }
 }
