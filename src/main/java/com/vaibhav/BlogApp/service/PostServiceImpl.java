@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService
         List<PostEntity> postsEntities = postDaoInterface.getAllPost();
 
         List<PostModel> postsModels = postsEntities.stream()
-               .map(postEntity ->postEntityToModel(postEntity)).toList();
+               .map(postEntity -> postEntityToModel(postEntity)).toList();
 
         return postsModels;
     }
