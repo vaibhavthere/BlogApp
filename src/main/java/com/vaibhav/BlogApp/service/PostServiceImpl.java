@@ -6,6 +6,9 @@ import com.vaibhav.BlogApp.dto.request.PostModel;
 import com.vaibhav.BlogApp.entity.PostEntity;
 import com.vaibhav.BlogApp.service.interfaces.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,7 +41,9 @@ public class PostServiceImpl implements PostService
     @Override
     public List<PostModel> getAllPosts()
     {
-        List<PostEntity> postsEntities = postDaoInterface.getAllPost();
+        Pageable pageable = PageRequest.of(0,10);
+
+        Page<PostEntity> postsEntities = postDaoInterface.getAllPost(pageable);
 
         List<PostModel> postsModels = postsEntities.stream()
                .map(postEntity -> postEntityToModel(postEntity)).toList();

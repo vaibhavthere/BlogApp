@@ -5,6 +5,9 @@ import com.vaibhav.BlogApp.entity.PostEntity;
 import com.vaibhav.BlogApp.exception.ResourseNotFoundException;
 import com.vaibhav.BlogApp.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,9 +33,9 @@ public class PostDaoImpl implements PostDaoInterface
     }
 
     @Override
-    public List<PostEntity> getAllPost() {
+    public Page<PostEntity> getAllPost(Pageable pageable) {
 
-        List<PostEntity> allPostEntity = postRepository.findAll();
+        Page<PostEntity> allPostEntity = postRepository.findAll(pageable);
 
         return allPostEntity;
     }
