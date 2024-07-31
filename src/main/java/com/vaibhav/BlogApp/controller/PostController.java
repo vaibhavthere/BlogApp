@@ -2,6 +2,7 @@ package com.vaibhav.BlogApp.controller;
 
 import com.vaibhav.BlogApp.dto.request.PostByIdRequest;
 import com.vaibhav.BlogApp.dto.request.PostModel;
+import com.vaibhav.BlogApp.response.PostResponse;
 import com.vaibhav.BlogApp.service.interfaces.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class PostController
     }
 
     @GetMapping(path = "/getAllPost")
-    public List<PostModel> getAllPost()
+    public PostResponse getAllPost()
     {
         return postService.getAllPosts();
     }

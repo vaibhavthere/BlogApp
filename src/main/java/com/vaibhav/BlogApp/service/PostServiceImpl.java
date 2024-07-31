@@ -4,6 +4,7 @@ import com.vaibhav.BlogApp.Persistence.interfaces.PostDaoInterface;
 import com.vaibhav.BlogApp.dto.request.PostByIdRequest;
 import com.vaibhav.BlogApp.dto.request.PostModel;
 import com.vaibhav.BlogApp.entity.PostEntity;
+import com.vaibhav.BlogApp.response.PostResponse;
 import com.vaibhav.BlogApp.service.interfaces.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,7 @@ public class PostServiceImpl implements PostService
     }
 
     @Override
-    public List<PostModel> getAllPosts()
+    public PostResponse getAllPosts()
     {
         Pageable pageable = PageRequest.of(0,10);
 
@@ -48,7 +49,16 @@ public class PostServiceImpl implements PostService
         List<PostModel> postsModels = postsEntities.stream()
                .map(postEntity -> postEntityToModel(postEntity)).toList();
 
-        return postsModels;
+        PostResponse postResponse = PostResponse.builder().build();
+        postResponse.setBody(postsModels);
+        postResponse.setPageNo(postsEntities.getNumber());
+        postResponse.setPageSize(postsEntities.getSize());
+        postResponse.setLast(postsEntities.isLast());
+        postResponse.setTotalPages(postsEntities.getTotalPages());
+        postResponse.setTotalElements(postsEntities.getTotalElements());
+        
+
+        return postResponse;
     }
 
     @Override
